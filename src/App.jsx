@@ -1,34 +1,41 @@
-function Square({ value }) {
-  function handleClick() {
-    alert("You clicked on square " + value);
-  }
+import { useState } from "react";
+
+function Square({ state, onSquareClick }) {
   return (
     <button
-      onClick={handleClick}
       className="bg-white border border-gray-400 h-12 w-12 m-1 leading-9"
+      onClick={onSquareClick}
     >
-      {value}
+      {state}
     </button>
   );
 }
 
 export default function Board() {
+  const [squares, setSquares] = useState(Array(9).fill(null));
+
+  function handleClick(i) {
+    const nextSquares = squares.slice();
+    nextSquares[i] = "X";
+    setSquares(nextSquares);
+  }
+
   return (
     <>
-      <div>
-        <Square value={1} />
-        <Square value={2} />
-        <Square value={3} />
+      <div className="flex">
+        <Square onSquareClick={() => handleClick(0)} state={squares[0]} />
+        <Square onSquareClick={() => handleClick(1)} state={squares[1]} />
+        <Square onSquareClick={() => handleClick(2)} state={squares[2]} />
       </div>
-      <div>
-        <Square value={4} />
-        <Square value={5} />
-        <Square value={6} />
+      <div className="flex">
+        <Square onSquareClick={() => handleClick(3)} state={squares[3]} />
+        <Square onSquareClick={() => handleClick(4)} state={squares[4]} />
+        <Square onSquareClick={() => handleClick(5)} state={squares[5]} />
       </div>
-      <div>
-        <Square value={7} />
-        <Square value={8} />
-        <Square value={9} />
+      <div className="flex">
+        <Square onSquareClick={() => handleClick(6)} state={squares[6]} />
+        <Square onSquareClick={() => handleClick(7)} state={squares[7]} />
+        <Square onSquareClick={() => handleClick(8)} state={squares[8]} />
       </div>
     </>
   );
