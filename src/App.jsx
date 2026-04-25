@@ -89,15 +89,15 @@ export default function Game() {
   });
 
   return (
-    <div>
-      <div>
+    <div className="flex justify-center p-4">
+      <div className="mr-8">
         {/* Board */}
         <Board isXNext={isXNext} squares={currentSquares} onPlay={handlePlay} />
       </div>
       <div>
         {/* History */}
         <div>
-          <ol>{move}</ol>
+          <ol className=" p-1 text-lg">{move}</ol>
         </div>
       </div>
     </div>
